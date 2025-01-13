@@ -18,8 +18,8 @@
 #ppl                The absolute value of diff for when the diff is negative
 
 #--------IMPORTS----------------------------------------------
+#Import os for clear() function
 from os import name, system
-
 #--------FUNCTIONS--------------------------------------------
 def clear():    #<--FUNCTION HEADER
     if name == 'nt':        #windows os
@@ -28,11 +28,13 @@ def clear():    #<--FUNCTION HEADER
         _ = system('clear')
 
 def difference(people, max_cap):
+    #necessary calculations
     dif = max_cap - people
 
     return dif
 
 def decision(response):  
+    #Error Trap loop
     while response != "y" and response != "n":
         print("***INVALID ENTRY!***")
         response = input("\nDo you have a different amount of poeple to enter? [y/n]: ").lower()
@@ -41,32 +43,35 @@ def decision(response):
 
 #--------MAIN EXECUTING CODE----------------------------------
 
-clear()
+clear()     #Clear Terminal
 
 print("\nWelcome to the Meeting Room Capacity Program\n")
 
-answer = "y"
+answer = "y"        #Loop Control Variabe
 
 while answer == "y":
 
+    #Asking user for data
     meeting_name = input("\nEnter the name of the meeting: ")
-
     room_cap = int(input("\nHow many people can be in the room at once?: "))
-
     ppl_attend = int(input(f"\nHow many people are planning on attending {meeting_name}?: "))
 
+    #Malipulation of Data
     diff = difference(ppl_attend, room_cap)
 
+    #If/Elif/Else statements for outcome of difference()
     if room_cap > ppl_attend:
         print(f"\nThe meeting meets fire saftey requirements and you can add {diff} more people")
     elif room_cap < ppl_attend:
-        ppl = abs(diff)
+        ppl = abs(diff)     #Absolute value conversion
         print(f"\nThe meeting does not meets fire saftey requirements and you need to remove {ppl} people")
     else:
         print(f"\nThe meeting meets fire saftey requirements and you can not add anyone else")
 
+    #Loop Control
     answer = input("\nDo you have a different amount of poeple to enter? [y/n]: ").lower()
     answer = decision(answer)
 
 
+#Final Display
 print("\n\n Thank you for using the program. Goodbye!")
