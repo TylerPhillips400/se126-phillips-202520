@@ -115,7 +115,7 @@ old_lap = 0
 for i in range(0, len(yr)):
 
     if int(yr[i]) <= 16: #Too old
-        print(f"old machine found om index {i}")
+        print(f"old machine found on index {i}")
         if comptype[i] == "Desktop":
             old_desk += 1
         elif comptype[i] == "Laptop":
