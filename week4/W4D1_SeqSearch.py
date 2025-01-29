@@ -154,10 +154,11 @@ while answer == "y":
     #show user search menu 
     print("\t~Search Menu~")
     print("1. Search by LAST name")         #one search value found
-    print("2. Search by LETTER grade")      #multiple search values found
+    print("2. Search by FIRST name")      #multiple search values found
+    print("3. Search by LETTER grade")
     print("3. EXIT")
     #gain search type 
-    search_type = input("Enter your search type [1-3]: ")
+    search_type = input("Enter your search type [1-4]: ")
 
     #filter search options based on type
     if search_type == "1": #LAST NAME
@@ -187,7 +188,34 @@ while answer == "y":
             print(f"Your search for {search_last} was NOT FOUND!")
             print("Check your cAsInG and sPeLlInG and try again!")
     
-    elif search_type == "2": #LETTER GRADE
+    elif search_type == "2": #LAST NAME
+        #sequential search - search for a student by their LAST name
+        #this version of sequential search is looking for ONE item, a specific and unique LAST name
+        
+        print("\tFIRST NAME SEARCH~")
+        #step 1: set-up and gain search query
+        found = -1  #flag var, will be replaced with index position if name is found; we are using a -1 because it is not a valid index location
+        search_first = input("Enter the last name you wish to find: ") #name we are looking for
+
+        #step 2: perform search algo (seq. search -> for loop w/ if statement)
+        for i in range(0, len(firstName)):
+            #for loop performs the SEQUENCE - from start through end of list items
+
+            if search_last.lower() == firstName[i].lower(): 
+                #if performs the SEARCH - is what we're looking for here in the list?
+                found = i  #stores found item's INDEX LOCATION
+
+        #step 3: display results to user; make sure you give info: both for found or NOT found
+        if found != -1:
+            #last name FOUND!
+            print(f"Your search for {search_first} was FOUND! Here is their data: ")
+            print(f"{firstName[found]:10}  {lastName[found]:10}  {test1[found]:3}  {test2[found]:3}  {test3[found]:3}  {num_avg[found]:6.1f}  {let_avg[found]}")
+        else: 
+            #NOT found
+            print(f"Your search for {search_first} was NOT FOUND!")
+            print("Check your cAsInG and sPeLlInG and try again!")
+    
+    elif search_type == "3": #LETTER GRADE
         print("\tLETTER GRADE SEARCH")
 
         #sequential search - search for a collection of students based on their Letter Grade Average
