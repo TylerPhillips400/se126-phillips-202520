@@ -3,7 +3,9 @@
 #Lab 4
 #1-30-2025
 
-#PROMPT: Write a program that utilizes the got_emails.csv file. Store the file data into 1D parallel lists, then use the information in the lists to assign additional data to each employee. Use the tables below to assign each employee in the file a unique email address, a department, and a unique phone extension.
+#PROMPT:
+#PART 1: Write a program that utilizes the got_emails.csv file. Store the file data into 1D parallel lists, then use the information in the lists to assign additional data to each employee. Use the tables below to assign each employee in the file a unique email address, a department, and a unique phone extension.
+#PART 2: 
 
 #VARIABLE DICTIONARY:
 #csvfile            Storing the relative path from the CSV file
@@ -34,10 +36,10 @@ def clear():
 clear()     #Clear Terminal
 
 #Empty lists
-fName = []
+fName = []      #Unique
 lName = []
 age = []
-sName = []
+sName = []      #Unique
 house = []
 
 #--connected to file------------------------------------------
