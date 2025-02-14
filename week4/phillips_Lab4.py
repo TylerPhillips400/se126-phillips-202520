@@ -118,7 +118,7 @@ for i in range(0, len(fName)):
 print("--------------------------------------------------------------------------------------------------")
 
 #WRITING NEW DATA
-file = open("week4/westeros.csv", "w")
+file = open("week4/westeros1.csv", "w")
 
 for i in range(0, len(fName)):
     if i in range(0, 16):
