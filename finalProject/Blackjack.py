@@ -29,14 +29,29 @@ def clear():
 def shuffle():
     random.shuffle(deck)
 
-def display(card):
-    print(f"{card[1]} of {card[0]}")
+def deal(num):
+    cards_dealt = []
+    for x in range(num):
+        card = deck.pop()
+        cards_dealt.append(card)
+    return cards_dealt
 
-def deal(turn):
-    card = random.choice(deck)
-    turn.append(card)
-    deck.remove(card)
+def value_Convert(rank):
+    value = 0
+    if rank == 'Ace':
+        value = 11
+    elif rank == 'Jack' or rank == 'Queen' or rank == 'King':
+        value = 10
+    else:
+        value = int(rank)
+    return int(value)
 
+
+def hand_value(card1, card2):
+    h_value = 0
+    for i in cards_dealt:
+        h_value = int(card1 + card2)
+    return h_value
 
 #-Main Code-----------------------------------------------------------------------------------
 
@@ -44,7 +59,7 @@ clear()     #Clear Terminal
 
 #Empty lists
 deck = []
-turn = []
+cards = []
 player = []
 dealer = []
 
@@ -70,8 +85,16 @@ print("---------------------------------------------")
 '''
 shuffle()
 
-deal(dealer)
-deal(player)
+cards_dealt = deal(2)
+print(cards_dealt)
 
-print(dealer)
-print(player)
+print()
+print(cards_dealt[0][1])
+print(cards_dealt[1][1])
+
+card1 = value_Convert(cards_dealt[0][1])
+card2 = value_Convert(cards_dealt[1][1])
+
+
+
+print(hand_value(card1, card2))
