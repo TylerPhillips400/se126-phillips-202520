@@ -138,8 +138,10 @@ while ans == "y":
 
     if dealer_value > 21:
         print("Dealer busts! You win!")
-    elif player_value > dealer_value or dealer_value == player_value and player_value <= 21:
+    elif player_value > dealer_value and player_value <= 21:
         print("You win!")
+    elif dealer_value == player_value:
+        print("Neither you or the dealer won. Push.")
     else:
             print("Dealer wins!")
     
