@@ -114,6 +114,11 @@ while ans == "y":
     elif search_type == "3":        #ADD NEW WORD TO DICTIONARY
         #Asking for new data
         new_word = input("\nWhat is the word that you would like to add to the dictionary?: ")
+
+        if new_word in words:       #ELIMIATES ADDING A WORD IF IT IS ALREADY IN THE DICTIONARY
+            print("***YOUR WORD IS ALREADY IN THE DICTIONARY***")
+            new_word = input("\nWhat is the word that you would like to add to the dictionary?: ")
+
         new_def = input(f"What is the definition if {new_word}?: ")
         dictionary[new_word] = new_def  #Adding data to the dictionary
         
