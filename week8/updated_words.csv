@@ -22,4 +22,4 @@ list,a Python collection type which stores multiple items/values to a name and w
 dictionary,a Python collection type which stores multiple items/values to a name and whose values are acceessed by referencing the string index of the value
 csv,comma separated value files - commonly used as data files in programming
 index,a key for list and dictionary collection types - integer based for standard lists and string based for dictionaries
-key,a string index or property name which has data associated to it in a dictionarylinux,os
+key,a string index or property name which has data associated to it in a dictionary
