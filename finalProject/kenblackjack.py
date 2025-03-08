@@ -10,6 +10,20 @@
 #file               Passing the CSV file to the reader method
 #rec                Processing all records in the CSV file
 #i                  Index of each field of data from all records
+#deck               Populated 2D list containing all the cards from the CSV file including rank and suit
+#ace_count          Counts to see if there is an ace in the hand passed to the hand_value() function
+#hand               Hand or 2 cards passed to hand_value() function depending on dealer or player
+#total              Counts total value of hand passed to hand_value() function depending
+#card               1 card containing rank and suit which is passed to hand_value() and prioritizing rank for calculation
+#player_hand        Caclulated hand value of player including suit
+#dealer_hand        Caclulated hand value of dealer including suit
+#show_all_dealer    If this variable is labled true then the user is able to see the dealers card after playing out their hand
+#ans                If this variable = "y" the program will re run [input]
+#choice             If this variable = "y" the player will "hit" if "n" then the play will stand and continue the program
+#player_choice      Asks player if they would like to hit or stand [input]
+#dealer_value       Calucates value of dealer hand against player hand to see who won
+#player_value       Calucates value of player hand against dealer hand to see who won
+
 
 
 #-Imports-------------------------------------------------------------------------------------
@@ -26,13 +40,16 @@ def clear():
     else:                   #linux or mac
         _ = system('clear')
 
-def shuffle():
+def shuffle():      
+    #Shuffles deck of cards for random hand for player and dealer
     random.shuffle(deck)
 
-def deal(deck):
+def deal(deck):     
+    #Pulls last card and removes it from the list 'deck'
     return deck.pop()
 
 def hand_value(hand):
+    #Calculate hand values
     ace_count = hand.count('A')
     total = 0
     for card in hand:
@@ -48,6 +65,7 @@ def hand_value(hand):
     return total
 
 def display_hands(player_hand, dealer_hand, show_all_dealer=False):
+    #Displays hands and if the hand is played out the dealer will show their second card
     print(f"\n    Your hand: {player_hand}\t\tValue: {hand_value(player_hand)}")
     if show_all_dealer:
         print(f"Dealer's hand: {dealer_hand}\t\tValue: {hand_value(dealer_hand)}")
@@ -84,22 +102,15 @@ with open("finalProject/cards.csv") as csvfile:
             deck.append(rec)
 #--disconnected from file---------------------------------------
 
-#shuffle()
-ans = "y"
-'''
-ans = input("\nWould you like to play Blackjack? [y/n]: ").lower()
-
-view = input("Would you like to see all cards in the deck? [y/n]: ").lower()
-if view == "y":
-    print(f"{'\nSUIT'} {'RANK'}")
-    print("---------------------------------------------")
-    for j in range(len(suits)):
-        print(f"{suit_symbols[suits[j]]:4} {ranks[j]}")
-    print("---------------------------------------------")
-    input("\nPress ENTER to shuffle the deck...")
-    '''
+#counting variables
+player_wins = 0
+player_losses = 0
+dealer_wins = 0
+dealer_losses = 0
+count_push = 0
 
 
+#shuffle deck
 shuffle()
 
 ans = "y"
@@ -139,12 +150,31 @@ while ans == "y":
         dealer_value = hand_value(dealer_hand)
 
         if dealer_value > 21:
+            player_wins += 1
+            dealer_losses += 1
             print("Dealer busts! You win!")
         elif player_value > dealer_value and player_value <= 21:
+            player_wins += 1
+            dealer_losses += 1
             print("You win!")
         elif dealer_value == player_value:
+            count_push += 1
             print("Neither you or the dealer won. Push.")
         else:
+            dealer_wins += 1
+            player_losses += 1
             print()
-
+    
     ans = input("Would you like to play another hand? [y/n]: ").lower()
+
+
+total_hands = player_wins + player_losses + count_push
+player_avg = (player_wins/total_hands) * 100
+dealer_avg = (dealer_wins/total_hands) * 100
+print(f"Total Games Played: {total_hands}")
+print()
+print(f"Player had {player_wins} win(s) | {player_losses} loss(es) | {count_push} tie(s)! ")
+print(f"Winning Percentage is: {player_avg:.0f}%\n ")
+print(f"Player had {dealer_wins} win(s) | {dealer_losses} loss(es) | {count_push} tie(s)! ")
+print(f"Winning Percentage is: {dealer_avg:.0f}%\n ")
+print("Thanks for playing! And may the Odds Ever be in Your Favor!\n")
