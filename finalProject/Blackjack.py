@@ -24,8 +24,6 @@
 #dealer_value       Calucates value of dealer hand against player hand to see who won
 #player_value       Calucates value of player hand against dealer hand to see who won
 
-
-
 #-Imports-------------------------------------------------------------------------------------
 #Import os for clear() function
 from os import name, system
