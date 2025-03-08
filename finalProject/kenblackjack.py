@@ -132,38 +132,35 @@ while ans == "y":
         if player_choice == 'h':
             player_hand.append(deal(deck))
             if hand_value(player_hand) > 21:
-                display_hands(player_hand, dealer_hand, show_all_dealer=True)
-                print("You busted! Dealer wins.")
                 choice = "n"
         elif player_choice == 's':
+            while hand_value(dealer_hand) < 17:
+                dealer_hand.append(deal(deck))
             choice = "n"
         else:
             print("Invalid input. Please enter 'h' or 's'.")
 
-    while hand_value(dealer_hand) < 17:
-        dealer_hand.append(deal(deck))
+    display_hands(player_hand, dealer_hand, show_all_dealer=True)
 
-    if choice != "n":
-        display_hands(player_hand, dealer_hand, show_all_dealer=True)
+    player_value = hand_value(player_hand)
+    dealer_value = hand_value(dealer_hand)
 
-        player_value = hand_value(player_hand)
-        dealer_value = hand_value(dealer_hand)
-
-        if dealer_value > 21:
-            player_wins += 1
-            dealer_losses += 1
-            print("Dealer busts! You win!")
-        elif player_value > dealer_value and player_value <= 21:
-            player_wins += 1
-            dealer_losses += 1
-            print("You win!")
-        elif dealer_value == player_value:
-            count_push += 1
-            print("Neither you or the dealer won. Push.")
-        else:
-            dealer_wins += 1
-            player_losses += 1
-            print()
+    if dealer_value > 21:
+        player_wins += 1
+        dealer_losses += 1
+        print("Dealer busts! You win!")
+    elif player_value > dealer_value and player_value <= 21:
+        player_wins += 1
+        dealer_losses += 1
+        print("You win!")
+    elif dealer_value == player_value:
+        count_push += 1
+        print("Neither you or the dealer won. Push.")
+    elif player_value > 21:
+        print("You busted! Dealer wins.")
+        dealer_wins += 1
+        player_losses += 1
+        
     
     ans = input("Would you like to play another hand? [y/n]: ").lower()
 
