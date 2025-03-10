@@ -24,8 +24,6 @@
 #dealer_value       Calucates value of dealer hand against player hand to see who won
 #player_value       Calucates value of player hand against dealer hand to see who won
 
-
-
 #-Imports-------------------------------------------------------------------------------------
 #Import os for clear() function
 from os import name, system
@@ -102,14 +100,6 @@ with open("finalProject/cards.csv") as csvfile:
             deck.append(rec)
 #--disconnected from file---------------------------------------
 
-#counting variables
-player_wins = 0
-player_losses = 0
-dealer_wins = 0
-dealer_losses = 0
-count_push = 0
-
-
 #shuffle deck
 shuffle()
 
@@ -146,32 +136,14 @@ while ans == "y":
     dealer_value = hand_value(dealer_hand)
 
     if dealer_value > 21:
-        player_wins += 1
-        dealer_losses += 1
         print("Dealer busts! You win!")
-    elif player_value > dealer_value and player_value <= 21:
-        player_wins += 1
-        dealer_losses += 1
-        print("You win!")
-    elif dealer_value == player_value:
-        count_push += 1
-        print("Neither you or the dealer won. Push.")
     elif player_value > 21:
         print("You busted! Dealer wins.")
-        dealer_wins += 1
-        player_losses += 1
-        
+    elif player_value > dealer_value and player_value <= 21:
+        print("You win!")
+    elif dealer_value == player_value:
+        print("Neither you or the dealer won. Push.")
+    else:
+        print()
     
     ans = input("Would you like to play another hand? [y/n]: ").lower()
-
-
-total_hands = player_wins + player_losses + count_push
-player_avg = (player_wins/total_hands) * 100
-dealer_avg = (dealer_wins/total_hands) * 100
-print(f"Total Games Played: {total_hands}")
-print()
-print(f"Player had {player_wins} win(s) | {player_losses} loss(es) | {count_push} tie(s)! ")
-print(f"Winning Percentage is: {player_avg:.0f}%\n ")
-print(f"Player had {dealer_wins} win(s) | {dealer_losses} loss(es) | {count_push} tie(s)! ")
-print(f"Winning Percentage is: {dealer_avg:.0f}%\n ")
-print("Thanks for playing! And may the Odds Ever be in Your Favor!\n")
